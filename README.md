@@ -1,4 +1,3 @@
-# project-template
-A template for my analysis projects
+# mlr3 examples
 
-Rendered doc: [https://yousefi138.github.io/project-template/analysis.html](https://yousefi138.github.io/project-template/analysis.html)
+Reproducible `mlr3` examples
