@@ -28,5 +28,4 @@ packages <- c("rmarkdown", "knitr")
 lapply(packages, require, character.only=T)
 
 render("analysis.rmd", 
-	output_format = "all",
-    output_dir = "docs")
+	output_format = "all")
