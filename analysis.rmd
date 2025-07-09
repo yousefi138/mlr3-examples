@@ -1,6 +1,6 @@
 ---
-title: "Template"
-subtitle: "Analysis"
+title: "Example mlr3 analysis"
+subtitle: "Disease classification in Indian Liver Patient Dataset"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 author: Paul Yousefi
 output:
@@ -28,10 +28,64 @@ sourcecode <- grep("analysis.r$",
 read_chunk(file.path(path, sourcecode))
 ```
 
-# Load data 
+# Indian Liver Patient Dataset
+
+The Indian Liver Patient Dataset is an epidemiological dataset distributed freely through `mlr3`, details available here: https://mlr3data.mlr-org.com/reference/ilpd.html 
+
 
 ```{r globals, results = 'hide'}
 ```
 
+## Load the data
+
 ```{r load.data}
+```
+
+## Prep the data for machine learning
+
+Convert binary variables coded as factors, `gender` and `diseased`, to be 'logic' variables (i.e. `TRUE`/`FALSE`) that `mlr3` can accommodate
+
+```{r prep.data}
+```
+
+# Define the claffication task 
+
+Set the machine learning task in `mlr3` syntax:
+```{r task}
+```
+
+# Specify the library of pipelines for performing the classification task
+
+Define individual pipelines of machine learning alogorithms for performing the prediction task we have set.
+
+This set of pipelines will make of the library of learning approaches that we'll compare for performing our classification task. 
+
+Each pipeline has a name (e.g. `rf`, `xgboost`, etc.) that we'll use to refer to when defining our library.
+
+
+```{r rf}
+```
+
+```{r lasso}
+```
+
+```{r elasticnet}
+```
+
+```{r xgboost}
+```
+
+# Apply each pipeline to the classication task
+
+We now apply each pipeline in the library to the classifiction task in a fair comparison where each has access to the same training and testing observations
+
+```{r bm, results = 'hide'}
+```
+
+# Calculate and summarise the performance of each pipeline 
+
+```{r metrics}
+```
+
+```{r plots}
 ```
