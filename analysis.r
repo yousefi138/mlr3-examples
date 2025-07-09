@@ -34,10 +34,21 @@ task = as_task_classif(
     id="liver disease")
 task$col_roles$stratum = task$target_names
 
+## ----split -------------------------------------------------------------
+# Split manually:
+set.seed(72340)
+train_idx = sample(task$nrow, 0.8 * task$nrow)
+test_idx = setdiff(seq_len(task$nrow), train_idx)
+
+# Create train and test tasks:
+task_train = task$clone()$filter(train_idx)
+task_test  = task$clone()$filter(test_idx)
+
+
 ## ----rf -------------------------------------------------------------
 # Random Forest pipeline
-n = task$nrow
-p = task$ncol
+n = task_train$nrow
+p = task_train$ncol
 
 rf = (
     po("scale") %>>%
@@ -95,7 +106,7 @@ xgboost = (
 
 ## ----bm -------------------------------------------------------------
 library = c(rf, lasso, elasticnet, xgboost)
-design = benchmark_grid(task, library, rsmp("cv",folds=3))
+design = benchmark_grid(task_train, library, rsmp("cv",folds=3))
 bm = benchmark(design)
 
 ## ----metrics -------------------------------------------------------------

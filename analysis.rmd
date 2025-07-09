@@ -54,6 +54,11 @@ Set the machine learning task in `mlr3` syntax:
 ```{r task}
 ```
 
+Split the task to reserve 20% of the the data as fully independent test data
+
+```{r split}
+```
+
 # Specify the library of pipelines for performing the classification task
 
 Define individual pipelines of machine learning alogorithms for performing the prediction task we have set.
